@@ -8,7 +8,7 @@ import { get } from "https"
 import { getDefaultRelaySigningKey } from "./utils";
 
 const ETHEREUM_RPC_URL = process.env.ETHEREUM_RPC_URL || "http://127.0.0.1:8545"
-const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
+const PRIVATE_KEY = "0x38d9ea6224227ddef2155ea273fe3548b7eefcbe8dee794d94c1e73704c97bc1"
 const BUNDLE_EXECUTOR_ADDRESS = process.env.BUNDLE_EXECUTOR_ADDRESS || ""
 
 const FLASHBOTS_RELAY_SIGNING_KEY = process.env.FLASHBOTS_RELAY_SIGNING_KEY || getDefaultRelaySigningKey();
@@ -44,6 +44,7 @@ function healthcheck() {
 }
 
 async function main() {
+  console.log("Using Private Key"  + PRIVATE_KEY);
   console.log("Searcher Wallet Address: " + await arbitrageSigningWallet.getAddress())
   console.log("Flashbots Relay Signing Wallet Address: " + await flashbotsRelaySigningWallet.getAddress())
   const flashbotsProvider = await FlashbotsBundleProvider.create(provider, flashbotsRelaySigningWallet);
